@@ -39,3 +39,17 @@ Double click `index.html`. For the photo glow to read colours from new photos, r
 ## Scroll effects on the portfolio page
 
 They live in `scroll3d.js` and the end of `style.css`: progress line, section dots, 3D reveals, hero depth, stacking project cards, a glowing timeline for Experience and Education, a floor grid, and a gallery ring that spins as you scroll past. Visitors with reduced motion turned on get a calm version.
+
+## Photos and posters that appear by themselves (Vercel or GitHub Pages)
+
+Just upload files to GitHub. Nothing else to edit.
+
+- `assets/clicks/`: new photos join the 3D ring.
+- `assets/creative/`: new posters and videos join the creative page (sub-folders become filter tabs).
+- On Vercel, `vercel.json` runs `tools/build-lists.js` on every deploy. After you commit, wait about a minute for Vercel to redeploy and the new photo shows up. In Vercel, Settings, Build and Development, leave Build Command and Output Directory on their defaults so `vercel.json` is used.
+- To keep a photo off the ring, add its path to `hide` at the top of `config.js`.
+- On a `yourname.github.io/repo` address `creative-auto.js` also finds new creative files straight from GitHub.
+
+## Phones
+
+The page is locked to a fixed zoom. The landing page camera has a top speed, so one swipe moves about one scene.

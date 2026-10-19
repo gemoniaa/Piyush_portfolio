@@ -7,6 +7,8 @@
   If you leave tone out, the browser picks a colour from the photo itself.
 */
 window.SITE = {
+  // Photos you never want on the ring, even though they sit in assets/clicks/
+  hide: ["assets/clicks/night-suit.jpg"],
   name: "Piyush Nandi",
   title: "Student, aspiring software engineer and visual creator",
   intro: "Computer Science student at SRM Ramapuram, Chennai. I build websites and projects, and I design posters and branding for my college tech club.",
@@ -39,6 +41,8 @@ window.SITE = {
       role: "Team Brain Bytes. I built and designed the website.",
       tags: ["Web app", "Healthcare", "Hackathon"],
       live: "https://gemonia-medflow.vercel.app/index.html",
+      shot: "assets/events/medflow-showcase.jpg",
+      embed: true,
       repo: "",
       post: ""
     },
@@ -49,7 +53,8 @@ window.SITE = {
       tags: ["Web portal", "Build-A-Thon"],
       live: "",
       repo: "",
-      post: "https://lnkd.in/p/gizz-9TH"
+      post: "https://lnkd.in/p/gizz-9TH",
+      shot: "assets/events/code2web-venue.jpg"
     },
     {
       title: "Raghusons Infra website",
@@ -57,6 +62,7 @@ window.SITE = {
       role: "Internship application demo",
       tags: ["Web design", "Demo"],
       live: "https://raghusons.vercel.app",
+      embed: true,
       repo: "",
       post: ""
     }

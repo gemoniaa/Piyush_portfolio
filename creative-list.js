@@ -1,4 +1,4 @@
-/* This file is written by tools/build-creative-list.py. You can leave it as it is. */
+/* Written by tools/build-lists.js on every deploy. You can leave it as it is. */
 window.SITE = window.SITE || {};
 window.SITE.creative = (window.SITE.creative || []).concat([
  {

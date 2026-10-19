@@ -5,6 +5,8 @@
   const $ = s => document.querySelector(s);
   const root = document.documentElement;
 
+  /* Email buttons open Gmail's compose window in a new tab */
+  const gmail = (su, body) => 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(C.email) + (su ? '&su=' + encodeURIComponent(su) : '') + (body ? '&body=' + encodeURIComponent(body) : '');
   const add = (p, ...k) => { k.flat().forEach(c => { if (c) p.append(c); }); return p; };
   const el = (t, a = {}, ...k) => {
     const e = document.createElement(t);
@@ -111,10 +113,34 @@
     link(C.resume, 'Download resume'),
     link(C.links.github, 'GitHub'),
     link(C.links.linkedin, 'LinkedIn'),
-    el('a', { class: 'btn', href: 'mailto:' + C.email, text: 'Email' }),
+    el('a', { class: 'btn', href: gmail(), target: '_blank', rel: 'noopener', text: 'Email' }),
     link(C.links.instagram, 'Instagram'));
   show(C.hero);
   document.querySelectorAll('[data-base]').forEach(s => watch(s, on => { if (on) show(C.hero); }));
+
+  /* A browser-style frame on each project: a live preview of the site (on bigger screens) over a photo */
+  const preview = p => {
+    if (!p.shot && !p.embed) return null;
+    const vp = el('div', { class: 'vp' });
+    if (p.shot) vp.append(image(p.shot, p.title));
+    if (p.embed && p.live && matchMedia('(min-width:761px)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+      const go = () => {
+        const f = el('iframe', { src: p.live, title: 'Preview of ' + p.title, tabindex: '-1', 'aria-hidden': 'true', loading: 'lazy' });
+        const k = () => f.style.setProperty('--k', (vp.clientWidth / 1280).toFixed(4));
+        k();
+        addEventListener('resize', k);
+        f.addEventListener('load', () => f.classList.add('on'));
+        vp.append(f);
+      };
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { io.disconnect(); go(); } }, { rootMargin: '300px' });
+        io.observe(vp);
+      } else go();
+    }
+    const host = (p.live || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+    return add(el('div', { class: 'pv', 'aria-hidden': 'true' }),
+      el('div', { class: 'bar' }, el('i'), el('i'), el('i'), el('span', { text: host })), vp);
+  };
 
   /* Projects: big cards that stack on top of each other as you scroll (see scroll3d.js) */
   add($('#projects'), C.projects.map((p, i) => {
@@ -127,7 +153,8 @@
         el('p', { class: 'meta', text: p.role }),
         el('p', { text: p.text }),
         add(el('div', { class: 'tags' }), p.tags.map(t => el('span', { class: 'tag', text: t }))),
-        btns.length ? add(el('div', { class: 'row' }), btns) : null));
+        btns.length ? add(el('div', { class: 'row' }), btns) : null),
+      preview(p));
   }));
 
   /* Education and languages */
@@ -290,8 +317,16 @@
   f.addEventListener('submit', e => {
     e.preventDefault();
     const d = new FormData(f);
-    location.href = 'mailto:' + C.email + '?subject=' + encodeURIComponent('Message from ' + d.get('name')) +
-      '&body=' + encodeURIComponent(d.get('message') + '\n\n' + d.get('from'));
+    window.open(gmail('Message from ' + d.get('name'), d.get('message') + '\n\n' + d.get('from')), '_blank', 'noopener');
   });
+  /* Phone dock: quick links along the bottom, like an app */
+  const dk = el('nav', { class: 'dock', 'aria-label': 'Quick links' });
+  [['top', 'Home', '.hero'], ['work', 'Projects', '#work'], ['certs', 'Certificates', '#certs'], ['gallery', 'Gallery', '#gallery'], ['contact', 'Contact', '#contact']].forEach(d => {
+    const a = el('a', { href: '#' + d[0], text: d[1] });
+    dk.append(a);
+    const s = document.querySelector(d[2]);
+    if (s) watch(s, on => { if (on) dk.querySelectorAll('a').forEach(x => x.classList.toggle('on', x === a)); });
+  });
+  document.body.append(dk);
   $('#yr').textContent = '\u00A9 ' + new Date().getFullYear() + ' ' + C.name;
 })();

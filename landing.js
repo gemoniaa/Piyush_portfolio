@@ -140,13 +140,22 @@
   if (rm) $('.track').style.height = '100vh';
 
   /* Scroll drives how far the camera has travelled */
-  let cur = 0, last = '', entering = false;
+  let cur = 0, last = '', entering = false, vel = 0, lt = performance.now();
   const frame = () => {
     if (entering) { requestAnimationFrame(frame); return; }
     const h = root.scrollHeight - innerHeight;
     const target = rm ? 1 : (h > 0 ? Math.min(1, Math.max(0, scrollY / h)) : 1);
-    cur += (target - cur) * .12;
-    if (Math.abs(target - cur) < .0004) cur = target;
+    const nt = performance.now(), dt = Math.min(50, nt - lt);
+    lt = nt;
+    if (rm) cur = target;
+    else {
+      /* The camera has a top speed (about one scene every 0.65 s), so a hard flick never skips past everything */
+      const mx = dt / 650 / 7.8;
+      const want = Math.max(-mx, Math.min(mx, (target - cur) * .1 * dt / 16.7));
+      vel += (want - vel) * .2;
+      cur = Math.min(1, Math.max(0, cur + vel));
+      if (Math.abs(target - cur) < .0004 && Math.abs(vel) < .0002) { cur = target; vel = 0; }
+    }
     const wz = cur * END;
     world.style.transform = 'translateZ(' + wz + 'px)';
     floor.style.backgroundPositionY = wz * .5 + 'px';
@@ -225,34 +234,78 @@
     [zoom, lap, lid, stage].forEach(n => n.getAnimations().forEach(a => a.cancel()));
   });
 
-  /* Loader: SRM, KV and CHiPSET spin in and out one after another (the animation itself lives in landing.css) */
-  const P = 4100;
+  /* Loader: a search bar opens, "Who is Piyush Nandi?" types in, a cursor clicks the button, a white sweep opens the page */
+  let seen = false;
+  try { seen = !!sessionStorage.getItem('pn_seen'); } catch (e) { /* ignore */ }
+  const K = seen ? .55 : 1;
 
-  const loader = $('#load'), bar = $('#lbi'), num = $('#ln');
+  const loader = $('#load'), pill = $('#lpill'), txt = $('#ltxt'), go = $('#lgo'), ptr = $('#lcur'), sweep = $('#lsweep');
   let done = false;
   const finish = () => {
     if (done) return;
     done = true;
+    try { sessionStorage.setItem('pn_seen', '1'); } catch (e) { /* ignore */ }
     loader.classList.add('done');
     document.body.classList.remove('lock');
-    setTimeout(() => loader.remove(), 900);
+    setTimeout(() => loader.remove(), 1300);
   };
   if (rm) { finish(); return; }
+
   const urls = [C.hero.src, (C.screen || C.hero).src].concat(cuts.map(p => p.src));
-  const total = urls.length + 1;
-  let loaded = 0, winLoaded = document.readyState === 'complete', shown = 0;
-  const t0 = performance.now();
+  let loaded = 0, winLoaded = document.readyState === 'complete';
   urls.forEach(u => { const i = new Image(); i.onload = i.onerror = () => { loaded++; }; i.src = u; });
   addEventListener('load', () => { winLoaded = true; });
-  const step = () => {
-    const real = (loaded + (winLoaded ? 1 : 0)) / total;
-    const p = Math.min(real, Math.min(1, (performance.now() - t0) / P));
-    shown += (p - shown) * .2;
-    num.textContent = Math.round(shown * 100);
-    bar.style.transform = 'scaleX(' + shown + ')';
-    loader.style.setProperty('--lp', shown.toFixed(3));
-    if (p >= 1 && shown > .995) finish(); else requestAnimationFrame(step);
+  const ready = () => loaded >= urls.length && winLoaded;
+
+  const sleep = ms => new Promise(r => setTimeout(r, ms * K));
+  const fx = (n, kf, o) => (n && n.animate) ? n.animate(kf, Object.assign({ fill: 'both' }, o)) : null;
+
+  const run = async () => {
+    await sleep(300);
+    if (done) return;
+    fx(pill, [{ clipPath: 'inset(0 50% 0 50% round 999px)', opacity: 1 }, { clipPath: 'inset(0 0 0 0 round 999px)', opacity: 1 }], { duration: 760 * K, easing: 'cubic-bezier(.6,0,.2,1)' });
+    await sleep(560);
+    fx(go, [{ transform: 'scale(.3)', opacity: 0 }, { transform: 'scale(1.12)', opacity: 1, offset: .7 }, { transform: 'scale(1)', opacity: 1 }], { duration: 480 * K, easing: 'ease-out' });
+    await sleep(600);
+    const msg = "Who is Piyush Nandi?";
+    for (let i = 1; i <= msg.length; i++) {
+      if (done) return;
+      txt.textContent = msg.slice(0, i);
+      await sleep(46 + Math.random() * 34);
+    }
+    await sleep(500);
+    const t0 = performance.now();
+    while (!ready() && !done && performance.now() - t0 < 5500) await new Promise(r => setTimeout(r, 80));
+    if (done) return;
+    /* the cursor travels to the button and clicks it */
+    const r = go.getBoundingClientRect();
+    const tx = r.left + r.width * .52, ty = r.top + r.height * .45;
+    const sx = Math.min(innerWidth - 40, tx + innerWidth * .22), sy = Math.min(innerHeight - 40, ty + innerHeight * .26);
+    const mx = (sx + tx) / 2 - 30, my = (sy + ty) / 2 + 36;
+    fx(ptr, [
+      { transform: 'translate(' + sx + 'px,' + sy + 'px)', opacity: 0 },
+      { transform: 'translate(' + mx + 'px,' + my + 'px)', opacity: 1, offset: .45 },
+      { transform: 'translate(' + tx + 'px,' + ty + 'px)', opacity: 1 }
+    ], { duration: 900 * K, easing: 'cubic-bezier(.45,0,.2,1)' });
+    await sleep(960);
+    if (done) return;
+    go.classList.add('hit');
+    fx(go, [{ transform: 'scale(1)' }, { transform: 'scale(.86)', offset: .4 }, { transform: 'scale(1)' }], { duration: 300 * K });
+    fx(ptr, [{ transform: 'translate(' + tx + 'px,' + ty + 'px) scale(1)' }, { transform: 'translate(' + tx + 'px,' + ty + 'px) scale(.82)', offset: .4 }, { transform: 'translate(' + tx + 'px,' + ty + 'px) scale(1)' }], { duration: 300 * K });
+    await sleep(320);
+    /* a white light sweeps in from the top right and opens the landing page */
+    const d = 850 * K + 150, s0 = performance.now();
+    sweep.style.opacity = 1;
+    await new Promise(res => {
+      const tick = now => {
+        const u = Math.min(1, (now - s0) / d), e = u < .5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+        sweep.style.setProperty('--p', (-30 + e * 150).toFixed(1) + '%');
+        if (u < 1) requestAnimationFrame(tick); else res();
+      };
+      requestAnimationFrame(tick);
+    });
+    finish();
   };
-  step();
-  setTimeout(finish, 7000);
+  run();
+  setTimeout(finish, 12000);
 })();
