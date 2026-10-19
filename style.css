@@ -231,3 +231,24 @@ input,textarea,select{font-size:16px}
   .pcard{position:relative!important;top:auto!important;margin-bottom:0!important;transform:none!important;filter:none!important;grid-template-columns:1fr;min-height:0}
   .pcard .pv{order:-1;grid-column:auto}
 }
+
+/* Glowing dots on the i's of the name: a ball that hops, charges up, catches fire and settles back into a ball */
+[data-dots] .gi{position:relative}
+[data-dots] .gi i{position:absolute;left:var(--dl,50%);top:var(--dt,.1em);width:.146em;height:.146em;margin-left:-.073em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff1b8 0 18%,#ffb62e 48%,#f08a0c 100%);box-shadow:0 0 .2em rgba(245,166,35,.85),0 0 .55em rgba(245,166,35,.4);animation:dotLife 6.4s ease-in-out var(--dd,0s) infinite;will-change:transform}
+[data-dots] .gi i::before,[data-dots] .gi i::after{content:"";position:absolute;left:50%;bottom:36%;border-radius:50% 0 50% 50%;opacity:0;pointer-events:none;transform-origin:50% 50%}
+[data-dots] .gi i::before{width:.3em;height:.3em;margin-left:-.15em;background:radial-gradient(circle at 30% 70%,#ffd35c 0 30%,#ff7a1a 62%,#e8330c 100%);box-shadow:0 0 .28em rgba(255,110,20,.9),0 0 .8em rgba(255,70,10,.45);animation:flameOut 6.4s linear var(--dd,0s) infinite}
+[data-dots] .gi i::after{width:.17em;height:.17em;margin-left:-.085em;bottom:40%;background:radial-gradient(circle at 30% 70%,#fffbe0 0 35%,#ffe27a 100%);animation:flameIn 6.4s linear var(--dd,0s) infinite}
+@keyframes dotLife{
+0%,40%{transform:translateY(0) scale(1,1);filter:brightness(1)}
+46%{transform:translateY(-.16em) scale(.94,1.1)}
+52%{transform:translateY(0) scale(1.2,.78)}
+56%{transform:translateY(-.05em) scale(1,1)}
+60%{transform:translateY(0) scale(1.05,.95)}
+66%{transform:translateY(0) scale(1.3);filter:brightness(1.25)}
+70%,83%{transform:translateY(0) scale(.6);filter:brightness(1.4)}
+89%{transform:translateY(0) scale(1.18,.86);filter:brightness(1.1)}
+93%{transform:translateY(-.03em) scale(.97,1.04)}
+100%{transform:translateY(0) scale(1,1);filter:brightness(1)}}
+@keyframes flameOut{0%,67%{opacity:0;transform:rotate(-45deg) scale(.1)}70.0%{opacity:1;transform:translate(0,-0.040em) rotate(-45.0deg) scale(1.00,1.15)}71.0%{opacity:1;transform:translate(0,-0.044em) rotate(-41.0deg) scale(1.10,1.20)}72.0%{opacity:1;transform:translate(0,-0.047em) rotate(-46.0deg) scale(0.90,1.00)}73.0%{opacity:1;transform:translate(0,-0.051em) rotate(-48.7deg) scale(1.00,0.85)}74.0%{opacity:1;transform:translate(0,-0.054em) rotate(-43.0deg) scale(1.10,1.04)}75.0%{opacity:1;transform:translate(0,-0.058em) rotate(-41.8deg) scale(0.89,1.24)}76.0%{opacity:1;transform:translate(0,-0.061em) rotate(-47.8deg) scale(1.00,1.12)}77.0%{opacity:1;transform:translate(0,-0.065em) rotate(-47.5deg) scale(1.10,0.92)}78.0%{opacity:1;transform:translate(0,-0.069em) rotate(-41.6deg) scale(0.89,0.94)}79.0%{opacity:1;transform:translate(0,-0.072em) rotate(-43.4deg) scale(1.01,1.08)}80.0%{opacity:1;transform:translate(0,-0.076em) rotate(-48.8deg) scale(1.10,1.17)}81.0%{opacity:1;transform:translate(0,-0.079em) rotate(-45.6deg) scale(0.89,1.13)}82.0%{opacity:1;transform:translate(0,-0.083em) rotate(-41.0deg) scale(1.01,0.96)}83.0%{opacity:1;transform:translate(0,-0.086em) rotate(-45.4deg) scale(1.10,0.89)}84.0%{opacity:1;transform:translate(0,-0.090em) rotate(-48.9deg) scale(0.89,1.09)}86%{opacity:.7;transform:translate(0,-.05em) rotate(-45deg) scale(.7)}89%,100%{opacity:0;transform:rotate(-45deg) scale(.1)}}
+@keyframes flameIn{0%,68%{opacity:0;transform:rotate(-45deg) scale(.1)}71.0%{opacity:1;transform:translate(0,-0.040em) rotate(-45.0deg) scale(0.95,1.09)}72.0%{opacity:1;transform:translate(0,-0.044em) rotate(-41.0deg) scale(1.05,1.14)}73.0%{opacity:1;transform:translate(0,-0.048em) rotate(-46.0deg) scale(0.85,0.95)}74.0%{opacity:1;transform:translate(0,-0.053em) rotate(-48.7deg) scale(0.95,0.81)}75.0%{opacity:1;transform:translate(0,-0.057em) rotate(-43.0deg) scale(1.05,0.99)}76.0%{opacity:1;transform:translate(0,-0.061em) rotate(-41.8deg) scale(0.85,1.18)}77.0%{opacity:1;transform:translate(0,-0.065em) rotate(-47.8deg) scale(0.95,1.06)}78.0%{opacity:1;transform:translate(0,-0.069em) rotate(-47.5deg) scale(1.05,0.88)}79.0%{opacity:1;transform:translate(0,-0.073em) rotate(-41.6deg) scale(0.85,0.89)}80.0%{opacity:1;transform:translate(0,-0.078em) rotate(-43.4deg) scale(0.96,1.02)}81.0%{opacity:1;transform:translate(0,-0.082em) rotate(-48.8deg) scale(1.05,1.11)}82.0%{opacity:1;transform:translate(0,-0.086em) rotate(-45.6deg) scale(0.85,1.07)}83.0%{opacity:1;transform:translate(0,-0.090em) rotate(-41.0deg) scale(0.96,0.91)}85%{opacity:.6;transform:rotate(-45deg) scale(.5)}88%,100%{opacity:0;transform:rotate(-45deg) scale(.1)}}
+@media (prefers-reduced-motion:reduce){[data-dots] .gi i,[data-dots] .gi i::before,[data-dots] .gi i::after{animation:none}}

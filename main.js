@@ -103,7 +103,7 @@
 
   /* Hero */
   document.title = C.name + ' | ' + C.title;
-  $('#name').textContent = C.name;
+  $('#name').setAttribute('data-dots', ''); if (window.PNdots) PNdots.set($('#name'), C.name); else $('#name').textContent = C.name;
   $('#title').textContent = C.title;
   $('#intro').textContent = C.intro;
   const hc = $('#heroCard');

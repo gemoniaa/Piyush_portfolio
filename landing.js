@@ -20,7 +20,9 @@
   };
   const text = (t, sub, big) => {
     const d = el('div', 'tx' + (big ? ' big' : ''));
-    d.append(el('p', '', t));
+    const p = el('p', '', big ? '' : t);
+    if (big) { p.setAttribute('data-dots', ''); if (window.PNdots) PNdots.set(p, t); else p.textContent = t; }
+    d.append(p);
     if (sub) d.append(el('span', '', sub));
     return d;
   };
@@ -106,6 +108,7 @@
     return o;
   };
   const layout = () => {
+    if (window.PNdots) PNdots.fitAll();
     const w = stage.clientWidth || innerWidth, h = stage.clientHeight || innerHeight;
     root.style.setProperty('--vw', w / 100 + 'px');
     root.style.setProperty('--vh', h / 100 + 'px');
@@ -131,7 +134,9 @@
       }
     });
   };
-  if (matchMedia('(pointer:coarse)').matches) hint.textContent = 'Swipe up to enter';
+  const coarse = matchMedia('(pointer:coarse)').matches;
+  const hintBase = coarse ? 'Swipe up to enter' : 'Scroll to enter';
+  hint.textContent = hintBase;
   layout();
   addEventListener('resize', () => { items.forEach(i => { if (i.tx) i.tx.__w = 0; }); layout(); });
   addEventListener('load', () => { items.forEach(i => { if (i.tx) i.tx.__w = 0; }); layout(); });
@@ -195,10 +200,51 @@
     });
     const t = best && bd < 600 ? best.tone : C.hero.tone;
     if (t !== last) { last = t; root.style.setProperty('--glow', t); }
-    hint.style.opacity = cur < .03 ? 1 : 0;
+    hint.style.opacity = (cur < .03 || hint.classList.contains('nudge')) ? 1 : 0;
     requestAnimationFrame(frame);
   };
   frame();
+
+
+  /* Every scene has a resting spot with its text in the middle. When scrolling stops, the page settles on the nearest one
+     (in the direction you were going) instead of freezing half way, and after a pause a soft message asks you to keep going. */
+  const stops = [...new Set(items.filter(i => !i.logo).map(i => +Math.min(1, -i.z / END).toFixed(4)))].sort((a, b) => a - b);
+  let lastY = scrollY, dir = 1, snapT = 0, idleT = 0, touching = false;
+  const settle = () => {
+    if (entering || rm || touching || document.getElementById('load')) return;
+    const h = root.scrollHeight - innerHeight;
+    if (h <= 0) return;
+    const c = scrollY / h, probe = c + dir * .03;
+    let best = stops[0];
+    stops.forEach(v => { if (Math.abs(v - probe) < Math.abs(best - probe)) best = v; });
+    if (Math.abs(best - c) * h < 6) return;
+    scrollTo({ top: best * h, behavior: 'smooth' });
+  };
+  const nudge = () => {
+    if (entering || rm || cur < .03 || cur > .965) return;
+    if (document.getElementById('load')) { idleT = setTimeout(nudge, 1000); return; }
+    hint.textContent = coarse ? 'Keep swiping up' : 'Keep scrolling';
+    hint.classList.add('nudge');
+  };
+  const woke = () => {
+    clearTimeout(idleT);
+    if (hint.classList.contains('nudge')) { hint.classList.remove('nudge'); hint.textContent = hintBase; }
+    idleT = setTimeout(nudge, 2800);
+  };
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    if (Math.abs(y - lastY) > 1) dir = y > lastY ? 1 : -1;
+    lastY = y;
+    clearTimeout(snapT); snapT = setTimeout(settle, 170);
+    woke();
+  }, { passive: true });
+  addEventListener('touchstart', () => { touching = true; clearTimeout(snapT); woke(); }, { passive: true });
+  const lift = () => { touching = false; clearTimeout(snapT); snapT = setTimeout(settle, 260); };
+  addEventListener('touchend', lift, { passive: true });
+  addEventListener('touchcancel', lift, { passive: true });
+  addEventListener('wheel', woke, { passive: true });
+  addEventListener('keydown', woke);
+  woke();
 
   /* Press the button: the laptop straightens, we zoom into its screen while it fades out, and the portfolio fades in */
   enter.addEventListener('click', e => {
@@ -261,19 +307,19 @@
   const fx = (n, kf, o) => (n && n.animate) ? n.animate(kf, Object.assign({ fill: 'both' }, o)) : null;
 
   const run = async () => {
-    await sleep(300);
+    await sleep(200);
     if (done) return;
-    fx(pill, [{ clipPath: 'inset(0 50% 0 50% round 999px)', opacity: 1 }, { clipPath: 'inset(0 0 0 0 round 999px)', opacity: 1 }], { duration: 760 * K, easing: 'cubic-bezier(.6,0,.2,1)' });
-    await sleep(560);
-    fx(go, [{ transform: 'scale(.3)', opacity: 0 }, { transform: 'scale(1.12)', opacity: 1, offset: .7 }, { transform: 'scale(1)', opacity: 1 }], { duration: 480 * K, easing: 'ease-out' });
-    await sleep(600);
+    fx(pill, [{ clipPath: 'inset(0 50% 0 50% round 999px)', opacity: 1 }, { clipPath: 'inset(0 0 0 0 round 999px)', opacity: 1 }], { duration: 620 * K, easing: 'cubic-bezier(.6,0,.2,1)' });
+    await sleep(420);
+    fx(go, [{ transform: 'scale(.3)', opacity: 0 }, { transform: 'scale(1.12)', opacity: 1, offset: .7 }, { transform: 'scale(1)', opacity: 1 }], { duration: 400 * K, easing: 'ease-out' });
+    await sleep(450);
     const msg = "Who is Piyush Nandi?";
     for (let i = 1; i <= msg.length; i++) {
       if (done) return;
       txt.textContent = msg.slice(0, i);
-      await sleep(46 + Math.random() * 34);
+      await sleep(28 + Math.random() * 22);
     }
-    await sleep(500);
+    await sleep(320);
     const t0 = performance.now();
     while (!ready() && !done && performance.now() - t0 < 5500) await new Promise(r => setTimeout(r, 80));
     if (done) return;
@@ -286,15 +332,15 @@
       { transform: 'translate(' + sx + 'px,' + sy + 'px)', opacity: 0 },
       { transform: 'translate(' + mx + 'px,' + my + 'px)', opacity: 1, offset: .45 },
       { transform: 'translate(' + tx + 'px,' + ty + 'px)', opacity: 1 }
-    ], { duration: 900 * K, easing: 'cubic-bezier(.45,0,.2,1)' });
-    await sleep(960);
+    ], { duration: 720 * K, easing: 'cubic-bezier(.45,0,.2,1)' });
+    await sleep(770);
     if (done) return;
     go.classList.add('hit');
     fx(go, [{ transform: 'scale(1)' }, { transform: 'scale(.86)', offset: .4 }, { transform: 'scale(1)' }], { duration: 300 * K });
     fx(ptr, [{ transform: 'translate(' + tx + 'px,' + ty + 'px) scale(1)' }, { transform: 'translate(' + tx + 'px,' + ty + 'px) scale(.82)', offset: .4 }, { transform: 'translate(' + tx + 'px,' + ty + 'px) scale(1)' }], { duration: 300 * K });
     await sleep(320);
     /* a white light sweeps in from the top right and opens the landing page */
-    const d = 850 * K + 150, s0 = performance.now();
+    const d = 700 * K + 150, s0 = performance.now();
     sweep.style.opacity = 1;
     await new Promise(res => {
       const tick = now => {

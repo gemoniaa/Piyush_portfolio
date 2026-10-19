@@ -25,7 +25,7 @@ body.lock{overflow:hidden}
 .tx{width:min(900px,calc(var(--vw)*88));text-align:center}
 .tx p{overflow-wrap:anywhere;font-size:clamp(30px,calc(var(--vw)*6.4),78px);font-weight:700;letter-spacing:-.035em;line-height:1.05}
 .tx.big p{font-size:clamp(44px,calc(var(--vw)*11.5),132px)}
-.tx span{display:block;margin-top:16px;color:var(--mut);font-size:clamp(15px,calc(var(--vw)*2.2),22px)}
+.tx>span{display:block;margin-top:16px;color:var(--mut);font-size:clamp(15px,calc(var(--vw)*2.2),22px)}
 .co img{height:100%;width:auto;display:block;pointer-events:none;}
 .co{height:clamp(200px,calc(var(--vh)*40),420px)}
 .lg{transform:translate3d(calc(-50% + var(--lx,0px)),calc(-50% + var(--ly,0px)),var(--z,0px)) rotate(var(--lr,0deg)) scale(var(--ls,1));pointer-events:none}
@@ -63,3 +63,7 @@ body.go #hint,body.go .skip,body.go .links{opacity:0;transition:opacity .3s}
 
 @media (max-width:640px){.skip{top:calc(12px + env(safe-area-inset-top,0px));right:12px}.co{height:clamp(200px,calc(var(--vh)*34),320px)}.lg img{height:calc(clamp(60px,calc(var(--vh)*9.5),110px)*var(--sz,1))}.tx.big span{margin-top:10px}.floor{height:45%}}
 .co img{-webkit-mask-image:linear-gradient(#000 84%,transparent);mask-image:linear-gradient(#000 84%,transparent)}
+
+#hint.nudge{color:#fff;animation:nudge 1.9s ease-in-out infinite;text-shadow:0 0 18px rgba(255,255,255,.35)}
+@keyframes nudge{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-7px)}}
+@media (prefers-reduced-motion:reduce){#hint.nudge{animation:none}}
