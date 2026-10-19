@@ -254,9 +254,9 @@ input,textarea,select{font-size:16px}
 @media (prefers-reduced-motion:reduce){[data-dots] .gi i,[data-dots] .gi i::before,[data-dots] .gi i::after{animation:none}}
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.8rem !important;
+    font-size: 3.5rem !important;
     line-height: 1.2 !important;
-    margin-top: 10px !important;
-    margin-bottom: 15px !important;
+    margin-top: 15px !important;
+    margin-bottom: 10px !important;
   }
 }
