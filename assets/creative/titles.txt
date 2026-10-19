@@ -1,0 +1,7 @@
+# Optional. One line per file:  file name = Title shown on the page
+kargil-vijay-diwas.jpg = Kargil Vijay Diwas
+last-chance-recruitment.jpg = Last chance, CHiPSET recruitments 2026
+hiring-poster.jpg = We are hiring, CHiPSET
+marquee-offer-mufg.jpg = Marquee offer, MUFG
+dream-offer-avgova.jpg = Dream offer, AvgoVa Solutions
+marquee-offer-amazon.jpg = Marquee offer, Amazon

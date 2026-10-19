@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative portfolio | Piyush Nandi</title>
+<meta name="description" content="Posters, videos and brand work designed by Piyush Nandi.">
+<meta name="theme-color" content="#0b0b0d">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="cpage">
+<div id="prog"></div>
+<header class="nav">
+  <a class="brand" href="portfolio.html">Piyush Nandi</a>
+  <nav aria-label="Pages">
+    <a href="portfolio.html">Portfolio</a><a href="portfolio.html#contact">Contact</a><a id="navDrive" target="_blank" rel="noopener" hidden>Drive folder</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap chead">
+    <a class="back" href="portfolio.html">&larr; Back to portfolio</a>
+    <h1>Creative portfolio</h1>
+    <p class="lead">Posters, videos and brand work I designed for events and my college tech club. Click any piece to open it.</p>
+    <div class="chips" id="chips" role="tablist" aria-label="Filter by type"></div>
+    <p class="muted" id="count"></p>
+  </section>
+  <section class="wrap cbody">
+    <div class="cgrid" id="cgrid"></div>
+    <div id="sentinel" aria-hidden="true"></div>
+    <div class="cempty" id="empty" hidden>
+      <p class="lead">New work is being added to this page.</p>
+      <div class="row"><a class="btn pri" id="emptyDrive" target="_blank" rel="noopener" hidden>Open the Drive folder</a></div>
+    </div>
+    <div class="row mid" id="driveRow" hidden><a class="btn" id="driveBtn" target="_blank" rel="noopener">Open the full Drive folder</a></div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <span id="yr"></span>
+  <span class="row"><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms and conditions</a></span>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Preview">
+  <button class="btn" id="lbx" type="button">Close</button>
+  <button class="btn lbn lbp" id="lbp" type="button" aria-label="Previous">&larr;</button>
+  <button class="btn lbn lbf" id="lbf" type="button" aria-label="Next">&rarr;</button>
+  <div class="lbin">
+    <div id="lbm"></div>
+    <div class="lbc"><strong id="lbt"></strong><span id="lbd"></span></div>
+  </div>
+</div>
+
+<noscript><p class="wrap">This page needs JavaScript to show its content.</p></noscript>
+<script src="config.js"></script>
+<script src="creative-list.js"></script>
+<script src="creative-auto.js"></script>
+<script src="creative.js"></script>
+</body>
+</html>

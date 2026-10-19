@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Piyush Nandi | Student, aspiring software engineer and visual creator</title>
+<meta name="description" content="Portfolio of Piyush Nandi, a Computer Science student at SRM Ramapuram who builds websites and projects and designs for a college tech club.">
+<meta name="theme-color" content="#0b0b0d">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{if(sessionStorage.getItem('pn_enter')){sessionStorage.removeItem('pn_enter');document.documentElement.classList.add('enter')}}catch(e){}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="prog"></div>
+<header class="nav">
+  <a class="brand" href="index.html">Piyush Nandi</a>
+  <nav aria-label="Sections">
+    <a href="#work">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#certs">Certificates</a><a href="#community">Community</a><a href="#gallery">Gallery</a><a href="creative.html">Creative</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero wrap" data-base>
+    <div class="ht">
+      <h1 id="name"></h1>
+      <p class="sub" id="title"></p>
+      <p class="lead" id="intro"></p>
+      <div class="row" id="cta"></div>
+    </div>
+    <div class="stage"><div class="cut" id="heroCard"></div></div>
+  </section>
+
+  <section id="work" class="wrap" data-base>
+    <h2>Projects</h2>
+    <div class="grid" id="projects"></div>
+  </section>
+
+  <section id="experience" class="wrap" data-base>
+    <h2>Experience</h2>
+    <div class="list" id="exp"></div>
+  </section>
+
+  <section id="education" class="wrap" data-base>
+    <h2>Education</h2>
+    <div class="list" id="edu"></div>
+    <h3>Languages</h3>
+    <div class="row" id="langs"></div>
+  </section>
+
+  <section id="certs" class="wrap" data-base>
+    <h2>Certificates</h2>
+    <p class="muted">Click a certificate to see it full size.</p>
+    <div class="grid" id="certList"></div>
+  </section>
+
+  <section id="community" class="wrap">
+    <h2>Community and events</h2>
+    <div class="grid" id="events"></div>
+  </section>
+
+  <section id="gallery" class="wrap">
+    <h2>Photo gallery</h2>
+    <p class="muted">Drag to spin the ring. Click a photo to open it.</p>
+    <div class="cylwrap" id="cylwrap" tabindex="0" aria-label="Photo ring. Use the arrow keys to spin.">
+      <div class="ring" id="ring"></div>
+    </div>
+    <div class="row mid">
+      <button class="btn" id="prev" type="button">Previous</button>
+      <button class="btn" id="next" type="button">Next</button>
+    </div>
+  </section>
+
+  <section id="creative" class="wrap" data-base>
+    <h2>Creative portfolio</h2>
+    <p class="muted">Posters, videos and brand work I designed, on a page of its own.</p>
+    <a class="card cteaser" id="cTeaser" href="creative.html">
+      <div class="cstack" id="cStack" aria-hidden="true"></div>
+      <div class="ct2">
+        <h3>Open the creative portfolio</h3>
+        <p id="cCount"></p>
+        <span class="btn pri">View all work</span>
+      </div>
+    </a>
+    <div class="row"><a class="btn" id="driveBtn" target="_blank" rel="noopener">Open the Drive folder</a></div>
+  </section>
+
+  <section id="contact" class="wrap" data-base>
+    <h2>Contact</h2>
+    <div class="two">
+      <div>
+        <p class="lead" id="mailText"></p>
+        <div class="row"><button class="btn" id="copyMail" type="button">Copy email</button></div>
+        <div class="row" id="social"></div>
+      </div>
+      <form class="card form" id="cf">
+        <label>Your name<input name="name" required autocomplete="name"></label>
+        <label>Your email<input name="from" type="email" required autocomplete="email"></label>
+        <label>Message<textarea name="message" rows="4" required></textarea></label>
+        <button class="btn pri" type="submit">Send by email</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <span id="yr"></span>
+  <span class="row"><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms and conditions</a></span>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Preview">
+  <button class="btn" id="lbx" type="button">Close</button>
+  <div class="lbin">
+    <div id="lbm"></div>
+    <div class="lbc"><strong id="lbt"></strong><span id="lbd"></span><a class="btn" id="lbl" target="_blank" rel="noopener" hidden>View post</a></div>
+  </div>
+</div>
+
+<noscript><p class="wrap">This site needs JavaScript to show its content.</p></noscript>
+<script src="config.js"></script>
+<script src="creative-list.js"></script>
+<script src="creative-auto.js"></script>
+<script src="main.js"></script>
+<script src="scroll3d.js"></script>
+</body>
+</html>
