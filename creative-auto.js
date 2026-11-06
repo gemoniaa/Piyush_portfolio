@@ -50,7 +50,7 @@
 
   window.creativeReady = new Promise(done => {
     const repo = where();
-    if (!repo || !window.fetch) { done(); return; }
+    if (C.creativeLocked || !repo || !window.fetch) { done(); return; }
     const key = 'pn_creative_' + repo;
     try {
       const c = JSON.parse(localStorage.getItem(key) || 'null');

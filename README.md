@@ -53,3 +53,16 @@ Just upload files to GitHub. Nothing else to edit.
 ## Phones
 
 The page is locked to a fixed zoom. The landing page camera has a top speed, so one swipe moves about one scene.
+
+## Private editor (secret mode)
+
+At the very bottom of `portfolio.html` and `creative.html`, in the footer next to "Terms and conditions", there is a nearly invisible dot. Tap it and enter the code to unlock private mode. A small "Private mode" pill appears with Edit and Lock buttons.
+
+In the editor you can change your name, headline, intro, email, links, resume and main photo, and add, edit, reorder or delete projects, experience, education, languages, certificates, posts and events, gallery photos and creative work (posters and videos, with a category for each). Pick files straight from your phone or computer.
+
+- Everything you change is saved on that device at once, and you see it on the page when you press Done. Visitors do not see it yet.
+- Press Publish in the Publish tab to send it to everyone. It makes one commit to your repository (new files go to `assets/uploads/`, the text goes to `content.js`), and GitHub Pages or Vercel updates the site within a minute.
+- On each device you use, paste a GitHub token once (the Publish tab explains how to make one). That token is what really lets you publish, so keep it private.
+- The code is checked in the browser, so it only keeps casual visitors out. Nobody can publish without your token.
+- `boot.js` loads the site and the secret button, `admin.js` is the editor, `content.js` is what you published. You never need to edit them.
+- If you add the same section by hand in `config.js` later, the editor's published version wins for that section.

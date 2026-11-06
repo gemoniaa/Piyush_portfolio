@@ -20,6 +20,7 @@
     return add(e, ...k);
   };
   const link = (href, label, cls) => href ? el('a', { class: cls || 'btn', href, target: '_blank', rel: 'noopener', text: label }) : null;
+  const postLabel = u => /linkedin\.com|lnkd\.in/i.test(u) ? 'View LinkedIn post' : /github\.com/i.test(u) ? 'View GitHub post' : 'View post';
   const image = (src, alt, eager) => {
     const i = el('img', { src, alt: alt || '', loading: eager ? 'eager' : 'lazy', decoding: 'async' });
     i.addEventListener('error', () => i.classList.add('missing'));
@@ -192,7 +193,7 @@
       el('h3', { class: 'z', text: ev.title }),
       el('p', { class: 'meta z', text: [ev.role, ev.date].filter(Boolean).join(', ') }),
       el('p', { class: 'z', text: ev.text }),
-      ev.link ? add(el('div', { class: 'row z' }), link(ev.link, 'View LinkedIn post')) : null);
+      ev.link ? add(el('div', { class: 'row z' }), link(ev.link, postLabel(ev.link))) : null);
     card.addEventListener('pointerenter', () => show(it));
     watch(card, on => { if (on) show(it); });
     return card;
