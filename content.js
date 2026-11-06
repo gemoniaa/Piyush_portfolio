@@ -1,6 +1,6 @@
 /* Written by the private editor. It changes whenever you press Publish. You can leave it as it is. */
 window.SITE_CONTENT = {
- "stamp": 1793998347539,
+ "stamp": 1793998484744,
  "data": {
   "certs": [
    {
@@ -14,8 +14,8 @@ window.SITE_CONTENT = {
    {
     "title": "NPTEL Gold certification",
     "issuer": "NPTEL",
-    "date": "06/11/2026",
-    "note": "Course completed",
+    "date": "06 November 2026",
+    "note": "Successfully completed my NPTEL course securing a score of 90% and Elite+Gold certification",
     "img": "assets/uploads/mw5fk93a7sev-nptel.jpg",
     "link": "https://beta.nptel.ac.in/verify/NOC-EDEZ-G9KA-94KP2"
    },
