@@ -9,6 +9,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>try{if(sessionStorage.getItem('pn_enter')){sessionStorage.removeItem('pn_enter');document.documentElement.classList.add('enter')}}catch(e){}</script>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="hang.css">
 </head>
 <body>
 <div id="prog"></div>
@@ -100,6 +101,18 @@
       </form>
     </div>
   </section>
+
+  <section id="hang" class="hang" aria-label="A cable with a camera, a watch and a laptop hanging from it. Decorative.">
+    <canvas aria-hidden="true"></canvas>
+    <span class="hang-chip" data-for="cctv">Watching you scroll</span>
+    <span class="hang-chip" data-for="watch">Chennai <b>--:--</b> IST</span>
+    <a class="hang-chip link" data-for="laptop" href="#work">See my work</a>
+    <div class="hang-copy">
+      <p class="hang-eyebrow">You made it to the end</p>
+      <h2>Give it a swing.</h2>
+      <p class="muted">Move your mouse through the threads, tap an object, or just scroll.</p>
+    </div>
+  </section>
 </main>
 
 <footer class="wrap foot">
@@ -120,6 +133,6 @@
 <script src="creative-list.js"></script>
 <script src="gallery-list.js"></script>
 <script src="dots.js"></script>
-<script src="boot.js" data-next="creative-auto.js,main.js,scroll3d.js,nozoom.js"></script>
+<script src="boot.js" data-next="creative-auto.js,main.js,scroll3d.js,hang.js,nozoom.js"></script>
 </body>
 </html>

@@ -66,3 +66,12 @@ In the editor you can change your name, headline, intro, email, links, resume an
 - The code is checked in the browser, so it only keeps casual visitors out. Nobody can publish without your token.
 - `boot.js` loads the site and the secret button, `admin.js` is the editor, `content.js` is what you published. You never need to edit them.
 - If you add the same section by hand in `config.js` later, the editor's published version wins for that section.
+
+## Hanging objects at the end of the portfolio page
+
+A cable bundle hangs from a rope, with a CCTV camera, a watch and a laptop swinging below it. Move the mouse through the threads, tap an object, or scroll, and they swing. The CCTV turns to follow the mouse. The watch chip shows live Chennai time.
+
+- Files: `hang.js` (the whole thing, plain WebGL, no library), `hang.css`, and the models in `assets/hang/`. The section is `#hang` in `portfolio.html`.
+- To change sizes, thread lengths or which way a model faces, edit the `OBJECTS` list near the top of `hang.js`.
+- The three chip labels are in `portfolio.html`. The laptop chip links to `#work`.
+- The models only load when you scroll near the end. If a browser has no WebGL the section removes itself. With reduced motion turned on it shows a still pose.
