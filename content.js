@@ -1,16 +1,8 @@
 /* Written by the private editor. It changes whenever you press Publish. You can leave it as it is. */
 window.SITE_CONTENT = {
- "stamp": 1795433371665,
+ "stamp": 1795435178773,
  "data": {
   "certs": [
-   {
-    "title": "Code Merge Hackathon v2.0, AI for Impact",
-    "issuer": "SRM Institute of Science and Technology, Kattankulathur",
-    "date": "9 to 11 September 2026",
-    "note": "Finalist",
-    "img": "assets/certs/codemerge-v2.jpg",
-    "link": "https://lnkd.in/p/gu7gGBCs"
-   },
    {
     "title": " Joy Of Computing Using Python NPTEL course",
     "issuer": "NPTEL",
@@ -18,6 +10,14 @@ window.SITE_CONTENT = {
     "note": "Elite+Gold certification",
     "img": "assets/uploads/mw5fk93a7sev-nptel.jpg",
     "link": "https://beta.nptel.ac.in/verify/NOC-EDEZ-G9KA-94KP2"
+   },
+   {
+    "title": "Code Merge Hackathon v2.0, AI for Impact",
+    "issuer": "SRM Institute of Science and Technology, Kattankulathur",
+    "date": "9 to 11 September 2026",
+    "note": "Finalist",
+    "img": "assets/certs/codemerge-v2.jpg",
+    "link": "https://lnkd.in/p/gu7gGBCs"
    },
    {
     "title": "Code2Web Build-A-Thon",
