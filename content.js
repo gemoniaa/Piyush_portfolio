@@ -1,6 +1,6 @@
 /* Written by the private editor. It changes whenever you press Publish. You can leave it as it is. */
 window.SITE_CONTENT = {
- "stamp": 1793998677075,
+ "stamp": 1795433371665,
  "data": {
   "certs": [
    {
@@ -79,6 +79,90 @@ window.SITE_CONTENT = {
     "img": "assets/events/medflow-showcase.jpg",
     "tone": "#b0545c",
     "link": "https://www.linkedin.com/in/piyush-nandi/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bdn6boX%2FxQGm6PLuZCGUmPA%3D%3D"
+   }
+  ],
+  "creative": [
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt6m7ujawa2-bike-edit-5.mp4",
+    "title": "Bike edit 5",
+    "cat": ""
+   },
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt6lvpcv8r4-chipset-x-google-event-video-cloud9.mp4",
+    "title": "Chipset x Google event video (CLOUD9)",
+    "cat": ""
+   },
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt6lkyylet9-chipset-edit-2026.mp4",
+    "title": "CHiPSET EDIT 2026",
+    "cat": ""
+   },
+   {
+    "type": "image",
+    "src": "assets/creative/CHiPSET/club hour 7 oct (1).png",
+    "title": "Club Hour 7 Oct (1)",
+    "w": 900,
+    "h": 1400,
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "image",
+    "src": "assets/creative/CHiPSET/hiring-poster.jpg",
+    "title": "We are hiring, CHiPSET",
+    "w": 1080,
+    "h": 1920,
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "image",
+    "src": "assets/creative/CHiPSET/kargil-vijay-diwas.jpg",
+    "title": "Kargil Vijay Diwas",
+    "w": 1220,
+    "h": 2170,
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "image",
+    "src": "assets/creative/CHiPSET/last-chance-recruitment.jpg",
+    "title": "Last chance, CHiPSET recruitments 2026",
+    "w": 1024,
+    "h": 1536,
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "image",
+    "src": "assets/creative/SRM-placements/Dream offer,Planetspark.png",
+    "title": "Dream Offer,Planetspark",
+    "w": 1080,
+    "h": 1350,
+    "cat": "SRM placements"
+   },
+   {
+    "type": "image",
+    "src": "assets/creative/SRM-placements/dream-offer-avgova.jpg",
+    "title": "Dream offer, AvgoVa Solutions",
+    "w": 1080,
+    "h": 1350,
+    "cat": "SRM placements"
+   },
+   {
+    "type": "image",
+    "src": "assets/creative/SRM-placements/marquee-offer-amazon.jpg",
+    "title": "Marquee offer, Amazon",
+    "w": 1080,
+    "h": 1350,
+    "cat": "SRM placements"
+   },
+   {
+    "type": "image",
+    "src": "assets/creative/SRM-placements/marquee-offer-mufg.jpg",
+    "title": "Marquee offer, MUFG",
+    "w": 1080,
+    "h": 1350,
+    "cat": "SRM placements"
    }
   ]
  }
