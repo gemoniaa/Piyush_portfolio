@@ -1,6 +1,6 @@
 /* Written by the private editor. It changes whenever you press Publish. You can leave it as it is. */
 window.SITE_CONTENT = {
- "stamp": 1795435178773,
+ "stamp": 1795435627757,
  "data": {
   "certs": [
    {
@@ -84,21 +84,63 @@ window.SITE_CONTENT = {
   "creative": [
    {
     "type": "video",
+    "src": "assets/uploads/mwt7fm4usnoy-1000265053.mp4",
+    "title": "CHiPSET PROMO",
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt7flgsw8ek-1000265055.mp4",
+    "title": "CHiPSET PROMO",
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt7flbeclcs-1000265056.mp4",
+    "title": "CHiPSET PROMO",
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt7fl90ko6x-1000265054.mp4",
+    "title": "CHiPSET PROMO",
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt7fky46m79-1000265057.mp4",
+    "title": "Recording Cuts and colour grading",
+    "cat": "Personal"
+   },
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt731agf8hz-1000265046.mp4",
+    "title": "CHiPSET PROMO",
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "video",
+    "src": "assets/uploads/mwt730pxb13r-1000265050.mp4",
+    "title": "CHiPSET PROMO",
+    "cat": "CHiPSET"
+   },
+   {
+    "type": "video",
     "src": "assets/uploads/mwt6m7ujawa2-bike-edit-5.mp4",
-    "title": "Bike edit 5",
-    "cat": ""
+    "title": "Personal edit ",
+    "cat": "Personal"
    },
    {
     "type": "video",
     "src": "assets/uploads/mwt6lvpcv8r4-chipset-x-google-event-video-cloud9.mp4",
     "title": "Chipset x Google event video (CLOUD9)",
-    "cat": ""
+    "cat": "CHiPSET"
    },
    {
     "type": "video",
     "src": "assets/uploads/mwt6lkyylet9-chipset-edit-2026.mp4",
     "title": "CHiPSET EDIT 2026",
-    "cat": ""
+    "cat": "CHiPSET"
    },
    {
     "type": "image",
